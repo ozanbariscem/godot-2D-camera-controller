@@ -58,6 +58,7 @@ onready var rect:Rect2 = get_viewport_rect()
 
 func _ready():
 	current = true
+	smoothing_enabled = smooth_move
 
 
 func _process(delta):
@@ -110,37 +111,37 @@ func _zoom(delta):
 
 
 func _keyboard_zoom_input(delta):
-	if Input.is_action_pressed("zoom_in"):
+	if Input.is_action_pressed("keyboard_zoom_in"):
 		_zoom_input(-1, keyboard_zoom_speed, delta)
 		
 		if keyboard_zoom_also_zooms_to_mouse and zoom_to_mouse and zoom.x > zoom_limit.x + 0.01:
 			var mouse_position:Vector2 = get_global_mouse_position()
 			var distance = mouse_position - self.position
 			_move_input(distance.normalized().round(), keyboard_movement_speed, delta)
-	if Input.is_action_pressed("zoom_out"):
+	if Input.is_action_pressed("keyboard_zoom_out"):
 		_zoom_input(1, keyboard_zoom_speed, delta)
 
 
 func _keyboard_movement_input(delta):
-	if Input.is_action_pressed('move_up'):
+	if Input.is_action_pressed('keyboard_move_up'):
 		_move_input(Vector2(0, -1), keyboard_movement_speed, delta)
-	if Input.is_action_pressed('move_down'):
+	if Input.is_action_pressed('keyboard_move_down'):
 		_move_input(Vector2(0, 1), keyboard_movement_speed, delta)
-	if Input.is_action_pressed('move_left'):
+	if Input.is_action_pressed('keyboard_move_left'):
 		_move_input(Vector2(-1, 0), keyboard_movement_speed, delta)
-	if Input.is_action_pressed('move_right'):
+	if Input.is_action_pressed('keyboard_move_right'):
 		_move_input(Vector2(1, 0), keyboard_movement_speed, delta)
 
 
 func _mouse_zoom_input(delta):
-	if Input.is_action_just_released('zoom_in'):
+	if Input.is_action_just_released('mouse_zoom_in'):
 		_zoom_input(-1, mouse_zoom_speed, delta)
 		
 		if zoom_to_mouse and zoom.x > zoom_limit.x + 0.01:
 			var mouse_position:Vector2 = get_global_mouse_position()
 			var distance = mouse_position - self.position
 			_move_input(distance.normalized().round(), mouse_movement_speed, delta)
-	if Input.is_action_just_released('zoom_out'):
+	if Input.is_action_just_released('mouse_zoom_out'):
 		_zoom_input(1, mouse_zoom_speed, delta)
 
 
