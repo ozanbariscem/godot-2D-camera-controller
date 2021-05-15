@@ -146,9 +146,9 @@ func _mouse_zoom_input(delta):
 
 func _mouse_movement_input(delta):
 	if Input.is_action_just_pressed("mouse_move_trigger"):
-		last_mouse_position = get_viewport().get_mouse_position()
+		last_mouse_position = viewport.get_mouse_position()
 	if Input.is_action_pressed("mouse_move_trigger"):
-		var mouse_position = get_viewport().get_mouse_position()
+		var mouse_position = viewport.get_mouse_position()
 		var direction:Vector2 = last_mouse_position - mouse_position
 		last_mouse_position = mouse_position
 		
