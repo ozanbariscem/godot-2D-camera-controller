@@ -1,2 +1,4 @@
 # godot-2D-camera-controller
 Add the script to a Camera2D node and adjust your parameters.
+
+Don't forget to modify the InputMap in project settings.
